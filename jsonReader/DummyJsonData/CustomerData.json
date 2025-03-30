@@ -1,0 +1,67 @@
+{
+    "user": {
+        "id": 12345,
+        "name": "Alice",
+        "email": "alice@example.com",
+        "profile": {
+            "age": 29,
+            "verified": true,
+            "preferences": {
+                "notifications": {
+                    "email": true,
+                    "sms": false,
+                    "push": null
+                },
+                "theme": "dark",
+                "language": "en-US"
+            }
+        },
+        "orders": [
+            {
+                "order_id": "A001",
+                "date": "2024-12-15",
+                "items": [
+                    {
+                        "product_id": "P1001",
+                        "name": "Wireless Mouse",
+                        "price": 25.99,
+                        "quantity": 2,
+                        "meta": {
+                            "color": "black",
+                            "warranty_months": 12
+                        }
+                    },
+                    {
+                        "product_id": "P1002",
+                        "name": "Mechanical Keyboard",
+                        "price": 89.49,
+                        "quantity": 1,
+                        "meta": {
+                            "color": "white",
+                            "layout": null
+                        }
+                    }
+                ],
+                "total": 141.47
+            }
+        ]
+    },
+    "settings": {
+        "auto_backup": false,
+        "backup_schedule": {
+            "frequency": "weekly",
+            "day": "Sunday",
+            "time": "03:00"
+        },
+        "last_backup": null
+    },
+    "metadata": {
+        "generated_at": "2025-03-30T14:00:00Z",
+        "version": 1.2,
+        "tags": [
+            "dummy",
+            "sample",
+            "json"
+        ]
+    }
+}
