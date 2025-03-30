@@ -16,6 +16,9 @@ obj/
 ## Visual Studio Code
 .vscode/
 
+# Copilot chat
+CHAT.md
+
 ## Rider
 .idea/
 *.sln.iml
