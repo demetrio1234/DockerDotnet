@@ -2,8 +2,8 @@ namespace jsonReader.Models
 {
     public class Notification
     {
-        public bool? EnableEmail { get; set; }
-        public bool? EnableSMS { get; set; }
-        public bool? EnablePush { get; set; }
+        public bool? Email { get; set; }
+        public bool? SMS { get; set; }
+        public bool? Push { get; set; }
     }
 }

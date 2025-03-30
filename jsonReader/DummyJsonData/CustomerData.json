@@ -50,7 +50,7 @@
         "backupSchedule": {
             "frequency": "weekly",
             "day": "Sunday",
-            "time": "03:00"
+            "time": "03:00:00"
         },
         "lastBackup": null
     },

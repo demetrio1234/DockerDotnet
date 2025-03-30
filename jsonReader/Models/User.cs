@@ -1,8 +1,14 @@
 namespace jsonReader.Models;
 public class User : BaseEntity
 {
-    public string Email { get; set; } = string.Empty;
-    public Profile Profile { get; set; } = new();
-    public List<Order> Orders = [];
+    private string email = "";
+    public string Email
+    {
+        get => email;
+        set => email = value;
+    }
+
+    public Profile? Profile { get; set; }
+    public List<Order> Orders { get; set; } = [];
     public List<Setting> Settings { get; set; } = [];
 }

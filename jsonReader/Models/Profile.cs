@@ -1,7 +1,7 @@
 namespace jsonReader.Models;
 public class Profile
 {
-    public int Age { get; set; }
+    public uint Age { get; set; }
     public bool Verified { get; set; }
-    public List<Preference> Preferences { get; set; } = [];
+    public Preference? Preference { get; set; }
 }
