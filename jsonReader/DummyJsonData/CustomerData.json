@@ -18,21 +18,21 @@
         },
         "orders": [
             {
-                "order_id": "A001",
-                "date": "2024-12-15",
+                "id": "A001",
+                "placedAtDate": "2024-12-15",
                 "items": [
                     {
-                        "product_id": "P1001",
+                        "productId": "P1001",
                         "name": "Wireless Mouse",
                         "price": 25.99,
                         "quantity": 2,
                         "meta": {
                             "color": "black",
-                            "warranty_months": 12
+                            "warrantyMonths": 12
                         }
                     },
                     {
-                        "product_id": "P1002",
+                        "productId": "P1002",
                         "name": "Mechanical Keyboard",
                         "price": 89.49,
                         "quantity": 1,
@@ -41,22 +41,21 @@
                             "layout": null
                         }
                     }
-                ],
-                "total": 141.47
+                ]
             }
         ]
     },
     "settings": {
-        "auto_backup": false,
-        "backup_schedule": {
+        "autoBackup": false,
+        "backupSchedule": {
             "frequency": "weekly",
             "day": "Sunday",
             "time": "03:00"
         },
-        "last_backup": null
+        "lastBackup": null
     },
     "metadata": {
-        "generated_at": "2025-03-30T14:00:00Z",
+        "generatedAt": "2025-03-30T14:00:00Z",
         "version": 1.2,
         "tags": [
             "dummy",
