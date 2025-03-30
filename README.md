@@ -4,14 +4,14 @@
     Run the following command in the terminal from the directory containing your `Dockerfile`:
 
     ```bash
-    docker build -t docker-dotnet-app .
+    docker build -t jsonreader . --load
     ```
 
 2. **Run the container**:
     Use the following command to start the application in a container:
 
     ```bash
-    docker run --rm -p 5000:5000 docker-dotnet-app
+    docker run --rm -p 5000:5000 jsonreader
     ```
 
     - The `--rm` flag automatically removes the container when it stops.
