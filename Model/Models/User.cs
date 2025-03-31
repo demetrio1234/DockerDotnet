@@ -1,4 +1,4 @@
-namespace jsonReader.Models;
+namespace Models;
 public class User : BaseEntity
 {
     private string email = "";

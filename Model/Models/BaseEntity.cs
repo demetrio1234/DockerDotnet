@@ -1,4 +1,4 @@
-namespace jsonReader.Models;
+namespace Models;
 public class BaseEntity
 {
     public ulong Id { get; set; }

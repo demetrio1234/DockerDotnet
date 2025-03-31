@@ -1,6 +1,6 @@
 using System.ComponentModel;
 
-namespace jsonReader.Models;
+namespace Models;
 
 public class MetaData : BaseEntity
 {
@@ -11,5 +11,5 @@ public class MetaData : BaseEntity
     }
 
     public decimal Version { get; set; }
-    public List<string> Tags { get; set; }
+    public List<string> Tags { get; set; } = [];
 }

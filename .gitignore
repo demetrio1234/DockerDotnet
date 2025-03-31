@@ -38,3 +38,6 @@ artifacts/
 
 ## Docker
 *.container.cache
+
+## Ionide
+.fake

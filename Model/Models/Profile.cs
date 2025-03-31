@@ -1,4 +1,4 @@
-namespace jsonReader.Models;
+namespace Models;
 public class Profile
 {
     public uint Age { get; set; }
