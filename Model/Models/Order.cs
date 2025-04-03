@@ -1,12 +1,16 @@
-namespace Models;
+using System.Text.Json.Serialization;
+
+namespace Model.Models;
 public class Order : BaseEntity
 {
     public new string Id { get; set; } = string.Empty;
-    public new DateTime CreatedAt { get; set; }
-    public DateTime PlacedAtDate
+
+    private DateTime? _createdAt;
+    [JsonPropertyName("PlacedAtDate")]
+    public override DateTime? CreatedAt
     {
-        get => CreatedAt;
-        set => CreatedAt = value;
+        get => _createdAt;
+        set => _createdAt = value;
     }
     public List<Item>? Items { get; set; }
 }

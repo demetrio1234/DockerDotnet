@@ -1,4 +1,4 @@
-namespace Models;
+namespace Model.Models;
 public class ItemMetaInfo
 {
     public string? Color { get; set; }

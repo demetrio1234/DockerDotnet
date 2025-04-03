@@ -1,0 +1,5 @@
+{
+    "docker.dockerPath": "/usr/bin/docker",
+    "dev.containers.optimisticallyLaunchDocker": true,
+    "search.useIgnoreFiles": false
+}

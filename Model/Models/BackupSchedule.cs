@@ -1,4 +1,4 @@
-namespace Models;
+namespace Model.Models;
 public class BackupSchedule
 {
     public string Frequency { get; set; } = "yearly";//TODO: replace with a constant string from the Constants class 

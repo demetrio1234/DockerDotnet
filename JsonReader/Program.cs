@@ -1,9 +1,9 @@
 ﻿using System.Text.Json;
 using JsonReader.Converters;
-using Models;
+using Model.Models;
 
-
-
+JsonSerializerOptions jsonOptions = new JsonSerializerOptions(JsonSerializerDefaults.Web);
+jsonOptions.Converters.Add(new DateTimeOffsetConverterUsingDateTimeParse());
 
 var folderName = "DummyJsonData";//TODO: relocate the string into a constant container class
 var currentDirectory = Directory.Exists($".{Path.AltDirectorySeparatorChar}{folderName}")
@@ -12,34 +12,25 @@ var currentDirectory = Directory.Exists($".{Path.AltDirectorySeparatorChar}{fold
 
 
 var path = Path.Combine([currentDirectory, folderName]);
-
-System.Console.WriteLine(Directory.Exists(path));
-
 var files = Directory.EnumerateFileSystemEntries(path);
+List<byte[]> bytes = [.. files.Select(File.ReadAllBytes)];
+List<JsonDocument> jsonDocs = [.. bytes.Select(byteArray => JsonDocument.Parse(byteArray))];
 
-Console.WriteLine("Here a list of all json files:");
-var bytes = new List<byte[]>() { };
-//var jsonDocs = new List<>
-foreach (var file in files)
-{
-    Console.WriteLine(file);
-    bytes.Add(await File.ReadAllBytesAsync(file));
-}
-
-var jsonDocs = new List<JsonDocument>();
-foreach (var byteArray in bytes)
-{
-    var jsonDoc = JsonDocument.Parse(byteArray);
-    jsonDocs.Add(jsonDoc);
-}
-var jsonOptions = new JsonSerializerOptions(JsonSerializerDefaults.Web);
-jsonOptions.Converters.Add(new DateTimeOffsetConverterUsingDateTimeParse());
 var customerData = JsonSerializer.Deserialize<CustomerData>(jsonDocs[0].RootElement, jsonOptions);
-Console.WriteLine(customerData);
+
+if (customerData is not null)
+{
+    Console.WriteLine(customerData.MetaData);
+    Console.WriteLine(customerData.Settings);
+    Console.WriteLine(customerData.User);
+}
 
 static void EnumerateFileSystemEntries(DirectoryInfo? p)
 {
-    var en = Directory.EnumerateFileSystemEntries(p.FullName);
+    IEnumerable<string> en = p is not null && p.Exists
+        ? Directory.EnumerateFileSystemEntries(p.FullName) :
+        [];
+
     foreach (var item in en)
         Console.WriteLine(item);
 }

@@ -1,4 +1,4 @@
-namespace Models;
+namespace Model.Models;
 public class User : BaseEntity
 {
     private string email = "";

@@ -1,4 +1,4 @@
-namespace Models;
+namespace Model.Models;
 public class Notification
 {
     public bool? Email { get; set; }

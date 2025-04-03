@@ -14,7 +14,7 @@ obj/
 *.log
 
 ## Visual Studio Code
-.vscode/
+# .vscode/
 
 # Copilot chat
 CHAT.md

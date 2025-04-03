@@ -1,4 +1,4 @@
-namespace Models;
+namespace Model.Models;
 public class Item : BaseEntity
 {
     public string ProductId { get; set; } = string.Empty;

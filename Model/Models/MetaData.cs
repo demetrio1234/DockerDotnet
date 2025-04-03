@@ -1,15 +1,20 @@
-using System.ComponentModel;
+using System.Text.Json.Serialization;
 
-namespace Models;
+namespace Model.Models;
 
 public class MetaData : BaseEntity
 {
-    public DateTime? GeneratedAt
-    {
-        get => CreatedAt;
-        set => CreatedAt = value;
-    }
+    private DateTime? _createdAt;
 
+    [JsonPropertyName("GeneratedAt")]
+    public override DateTime? CreatedAt
+    {
+        get => _createdAt;
+        set
+        {
+            _createdAt = value;
+        }
+    }
     public decimal Version { get; set; }
     public List<string> Tags { get; set; } = [];
 }

@@ -1,4 +1,4 @@
-namespace Models;
+namespace Model.Models;
 public class Profile
 {
     public uint Age { get; set; }

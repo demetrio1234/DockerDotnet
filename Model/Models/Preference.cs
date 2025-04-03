@@ -1,4 +1,4 @@
-namespace Models;
+namespace Model.Models;
 public class Preference
 {
     public string Theme { get; set; } = string.Empty;
