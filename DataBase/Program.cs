@@ -1,35 +1,38 @@
-﻿using Microsoft.Data.Sqlite;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Logging;
 
-class Program
+var host = Host.CreateDefaultBuilder(args)
+    .ConfigureServices((context, services) =>
+    {
+        // Register your services here
+        services.AddDbContext<ApplicationDbContext>(options =>
+            options.UseSqlite("Data Source=../DockerDotnet.sln;"));
+    })
+    .ConfigureLogging(logging =>
+    {
+        logging.ClearProviders();
+        logging.AddConsole();
+    })
+    .Build();
+
+using (var scope = host.Services.CreateScope())
 {
-    static void Main(string[] args)
+    var services = scope.ServiceProvider;
+
+    try
     {
-
-        DbContextOptionsBuilder optionsBuilder = new DbContextOptionsBuilder();
-
-        string connectionString = "Data Source=database.db";
-
-        using (var connection = new SqliteConnection(connectionString))
-        {
-            connection.Open();
-
-            // Example: Create a table
-            var command = connection.CreateCommand();
-            command.CommandText = @"
-                CREATE TABLE IF NOT EXISTS Users (
-                    Id INTEGER PRIMARY KEY AUTOINCREMENT,
-                    Name TEXT NOT NULL,
-                    Email TEXT NOT NULL
-                );
-            ";
-            command.ExecuteNonQuery();
-
-            Console.WriteLine("Database connected and table created (if not exists).");
-        }
+        var context = services.GetRequiredService<ApplicationDbContext>();
+        // Ensure the database is created
+        context.Database.EnsureCreated();
+        // Use the context here
     }
-    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+    catch (Exception ex)
     {
-        optionsBuilder.UseSqlite("Data Source=databse.dat");
+        var logger = services.GetRequiredService<ILogger<Program>>();
+        logger.LogError(ex, "An error occurred while creating the database.");
     }
 }
+
+await host.RunAsync();

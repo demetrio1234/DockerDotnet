@@ -1,22 +1,18 @@
-﻿using System.Text.Json;
-using JsonReader.Converters;
+﻿using JsonReader.Converters;
 using Model.Models;
+using System.Text.Json;
 
-JsonSerializerOptions jsonOptions = new JsonSerializerOptions(JsonSerializerDefaults.Web);
+JsonSerializerOptions jsonOptions = new(JsonSerializerDefaults.Web);
 jsonOptions.Converters.Add(new DateTimeOffsetConverterUsingDateTimeParse());
 
-var folderName = "DummyJsonData";//TODO: relocate the string into a constant container class
-var currentDirectory = Directory.Exists($".{Path.AltDirectorySeparatorChar}{folderName}")
-                        ? $".{Path.AltDirectorySeparatorChar}"
-                        : $"..{Path.AltDirectorySeparatorChar}";
+string folderName = "DummyJsonData";//TODO: relocate the string into a constant container class
 
-
-var path = Path.Combine([currentDirectory, folderName]);
-var files = Directory.EnumerateFileSystemEntries(path);
+string path = RecurseTillFound(Directory.GetCurrentDirectory(), folderName, true);
+IEnumerable<string> files = Directory.EnumerateFileSystemEntries(path);
 List<byte[]> bytes = [.. files.Select(File.ReadAllBytes)];
 List<JsonDocument> jsonDocs = [.. bytes.Select(byteArray => JsonDocument.Parse(byteArray))];
 
-var customerData = JsonSerializer.Deserialize<CustomerData>(jsonDocs[0].RootElement, jsonOptions);
+CustomerData? customerData = JsonSerializer.Deserialize<CustomerData>(jsonDocs[0].RootElement, jsonOptions);
 
 if (customerData is not null)
 {
@@ -25,12 +21,32 @@ if (customerData is not null)
     Console.WriteLine(customerData.User);
 }
 
-static void EnumerateFileSystemEntries(DirectoryInfo? p)
+static string RecurseTillFound(string currentFolder, string folderLookingFor, bool up)
 {
-    IEnumerable<string> en = p is not null && p.Exists
-        ? Directory.EnumerateFileSystemEntries(p.FullName) :
-        [];
+    string currentDirectory = Directory.Exists(currentFolder)
+        ? currentFolder
+        : Path.GetFullPath(Path.Combine(currentFolder, ".."));
 
-    foreach (var item in en)
-        Console.WriteLine(item);
+    if (string.Equals(currentDirectory.Split(Path.DirectorySeparatorChar).Last(), folderLookingFor))
+    {
+        return currentDirectory;
+    }
+
+    //if any of the folders inside the current folder matches the folder we are looking for
+    IEnumerable<string> directories = Directory
+        .EnumerateDirectories(currentDirectory)
+        .Where(d => string.Equals(d.Split(Path.DirectorySeparatorChar).Last(), folderLookingFor));
+
+    if (directories.Any())
+    {
+        return directories.First();
+    }
+
+    if (up)
+    {
+        DirectoryInfo? parentDirectory = Directory.GetParent(currentDirectory);
+        return parentDirectory is null ? string.Empty : RecurseTillFound(parentDirectory.FullName, folderLookingFor, up);
+    }
+
+    return string.Empty;
 }
