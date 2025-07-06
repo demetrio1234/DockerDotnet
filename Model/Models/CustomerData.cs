@@ -1,6 +1,6 @@
 namespace Model.Models;
 
-public class CustomerData
+public class CustomerData : BaseEntity
 {
     public User User { get; set; } = new();
     public Setting Settings { get; set; } = new();

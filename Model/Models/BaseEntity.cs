@@ -1,8 +1,10 @@
-using System.Runtime.InteropServices.Marshalling;
+using System.ComponentModel.DataAnnotations;
 
 namespace Model.Models;
+
 public class BaseEntity
 {
+    [Key]
     public ulong Id { get; set; }
     public string? Name { get; set; }
     public virtual DateTime? CreatedAt { get; set; }

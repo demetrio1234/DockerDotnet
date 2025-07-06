@@ -1,15 +1,11 @@
 ﻿using Microsoft.EntityFrameworkCore;
+
 using Model.Models;
 
 namespace DataBase;
 
-public class ApplicationDbContext : DbContext
+public class ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : DbContext(options)
 {
-    public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
-        : base(options)
-    {
-    }
-
     public DbSet<Employee> Employees { get; set; }
     public DbSet<Department> Departments { get; set; }
 

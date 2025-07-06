@@ -1,7 +1,10 @@
+using Model.Enums;
+
 namespace Model.Models;
-public class BackupSchedule
+
+public class BackupSchedule : BaseEntity
 {
-    public string Frequency { get; set; } = "yearly";//TODO: replace with a constant string from the Constants class 
-    public string Day { get; set; } = "Sunday";//TODO: replace with a constant string from the Constants class
+    public int Frequency { get; set; } = (int)Enums.Frequency.Year;
+    public int Day { get; set; } = (int)WeekDays.Sunday;
     public TimeOnly Time { get; set; }
 }

@@ -1,6 +1,6 @@
 namespace Model.Models;
 
-public class Setting
+public class Setting : BaseEntity
 {
     public bool AutoBackup { get; set; }
     public BackupSchedule BackupSchedule { get; set; } = new();

@@ -1,7 +1,8 @@
 namespace Model.Models;
+
 public class User : BaseEntity
 {
-    private string email = "";
+    private string email = string.Empty;
     public string Email
     {
         get => email;
