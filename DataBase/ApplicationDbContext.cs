@@ -11,7 +11,7 @@ public class ApplicationDbContext(DbContextOptions<ApplicationDbContext> options
 
     public DbSet<CustomerData> CustomerDatas { get; set; } = null!;
     public DbSet<MetaData> MetaDatas { get; set; } = null!;
-    public DbSet<Setting> Settings { get; set; } = null!;
+    public DbSet<Settings> Settings { get; set; } = null!;
     public DbSet<User> Users { get; set; } = null!;
     public DbSet<Item> Items { get; set; } = null!;
     public DbSet<ItemMetaInfo> ItemMetaInfos { get; set; } = null!;
@@ -27,7 +27,7 @@ public class ApplicationDbContext(DbContextOptions<ApplicationDbContext> options
         modelBuilder.Entity<Department>().ToTable("Departments");
         modelBuilder.Entity<CustomerData>().ToTable("CustomerDatas");
         modelBuilder.Entity<MetaData>().ToTable("MetaDatas");
-        modelBuilder.Entity<Setting>().ToTable("Settings");
+        modelBuilder.Entity<Settings>().ToTable("Settings");
         modelBuilder.Entity<User>().ToTable("Users");
         modelBuilder.Entity<Item>().ToTable("Items");
         modelBuilder.Entity<ItemMetaInfo>().ToTable("ItemMetaInfos");

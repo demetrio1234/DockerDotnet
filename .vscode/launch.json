@@ -1,46 +1,46 @@
 {
-    "version": "0.2.0",
-    "configurations": [
-        {
-            "name": ".NET Core DataBase (console)",
-            "type": "coreclr",
-            "request": "launch",
-            "preLaunchTask": "build",
-            "program": "${workspaceFolder}/DataBase/bin/Debug/net8.0/DataBase.dll",
-            "args": [],
-            "cwd": "${workspaceFolder}",
-            "stopAtEntry": false,
-            "console": "internalConsole"
-        },
-        {
-            "name": "C#: JsonReader Debug",
-            "type": "coreclr",
-            "request": "launch",
-            "program": "${workspaceFolder}/JsonReader/bin/Debug/net8.0/JsonReader.dll",
-            "preLaunchTask": "build"
-        },
-        {
-            "name": "C#: JsonReader Debug Test",
-            "type": "dotnet",
-            "request": "launch",
-            "projectPath": "${workspaceFolder}/../JsonReader.Test.csproj",
-            "preLaunchTask": "build"
-        },
-        {
-            "name": ".NET Core Launch (console)",
-            "type": "coreclr",
-            "request": "launch",
-            "preLaunchTask": "build",
-            "program": "${workspaceFolder}/JsonReader.Test/bin/Debug/net8.0/JsonReader.Test.dll",
-            "args": [],
-            "cwd": "${workspaceFolder}/JsonReader.Test",
-            "console": "internalConsole",
-            "stopAtEntry": false
-        },
-        {
-            "name": ".NET Core Attach",
-            "type": "coreclr",
-            "request": "attach"
-        }
-    ]
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": ".NET Core DataBase (console)",
+      "type": "coreclr",
+      "request": "launch",
+      "preLaunchTask": "build",
+      "program": "${workspaceFolder}/DataBase/bin/Debug/net8.0/DataBase.dll",
+      "args": [],
+      "cwd": "${workspaceFolder}",
+      "stopAtEntry": false,
+      "console": "internalConsole"
+    },
+    {
+      "name": "C#: JsonReader Debug",
+      "type": "coreclr",
+      "request": "launch",
+      "program": "${workspaceFolder}/JsonReader/bin/Debug/net8.0/JsonReader.dll",
+      "preLaunchTask": "build-solution"
+    },
+    {
+      "name": "C#: JsonReader Debug Test",
+      "type": "dotnet",
+      "request": "launch",
+      "projectPath": "${workspaceFolder}/../JsonReader.Test.csproj",
+      "preLaunchTask": "build"
+    },
+    {
+      "name": ".NET Core Launch (console)",
+      "type": "coreclr",
+      "request": "launch",
+      "preLaunchTask": "build",
+      "program": "${workspaceFolder}/JsonReader.Test/bin/Debug/net8.0/JsonReader.Test.dll",
+      "args": [],
+      "cwd": "${workspaceFolder}/JsonReader.Test",
+      "console": "internalConsole",
+      "stopAtEntry": false
+    },
+    {
+      "name": ".NET Core Attach",
+      "type": "coreclr",
+      "request": "attach"
+    }
+  ]
 }

@@ -48,6 +48,18 @@
         "${workspaceFolder}/JsonReader/JsonReader.csproj"
       ],
       "problemMatcher": "$msCompile"
+    },
+    {
+      "label": "build-solution",
+      "command": "dotnet",
+      "type": "process",
+      "args": [
+        "build",
+        "${workspaceFolder}/DockerDotnet.sln",
+        "/property:GenerateFullPaths=true",
+        "/consoleloggerparameters:NoSummary;ForceNoAlign"
+      ],
+      "problemMatcher": "$msCompile"
     }
   ]
 }

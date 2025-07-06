@@ -4,21 +4,22 @@ using JsonReader.Constants;
 using System.Text.Json;
 using JsonReader.Helpers;
 
-JsonSerializerOptions jsonOptions = new(JsonSerializerDefaults.Web);
+JsonSerializerOptions jsonOptions = new(JsonSerializerDefaults.Web)
+{
+    PropertyNameCaseInsensitive = true,
+    DictionaryKeyPolicy = JsonNamingPolicy.CamelCase
+};
+
 jsonOptions.Converters.Add(new DateTimeOffsetConverterUsingDateTimeParse());
 
-string folderName = AppConfig.DummyJsonData;
+string path = DirectoryHelper.RecurseTillFound(Directory.GetCurrentDirectory(), AppConfig.DummyJsonData, true);
+var jsonDocs = JsonHelper.GetJsonDocuments(path);
 
-string path = DirectoryHelper.RecurseTillFound(Directory.GetCurrentDirectory(), folderName, true);
-IEnumerable<string> files = Directory.EnumerateFileSystemEntries(path);
-List<byte[]> bytes = [.. files.Select(File.ReadAllBytes)];
-List<JsonDocument> jsonDocs = [.. bytes.Select(byteArray => JsonDocument.Parse(byteArray))];
-
-CustomerData? customerData = JsonSerializer.Deserialize<CustomerData>(jsonDocs[0].RootElement, jsonOptions);
+var customerData = JsonSerializer.Deserialize<CustomerData>(jsonDocs.ElementAt(1), jsonOptions);
 
 if (customerData is not null)
 {
-    Console.WriteLine(customerData.MetaData);
-    Console.WriteLine(customerData.Settings);
-    Console.WriteLine(customerData.User);
+    Console.WriteLine(customerData.User.Email);
+    Console.WriteLine(customerData.User.Name);
+    Console.WriteLine(customerData.User.Orders.ElementAt(0).Id);
 }
